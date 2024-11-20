@@ -66,6 +66,18 @@ describe('Variable', function () {
         expect(v.disabled).to.be.false;
     });
 
+    it('should update the domains property of a variable', function () {
+        let v = new Variable();
+        v.update({ domains: ['postman-echo.com']});
+        expect(v.domains).to.deep.equal(['postman-echo.com']);
+
+        v = new Variable({
+            domains: ['postman-echo.com']
+        });
+        v.update({ domains: ['postman.com']});
+        expect(v.domains).to.deep.equal(['postman.com']);
+    });
+
     it('should prepopulate value and type when passed to the constructor (string)', function () {
         let v = new Variable({
             value: 'Picard',
